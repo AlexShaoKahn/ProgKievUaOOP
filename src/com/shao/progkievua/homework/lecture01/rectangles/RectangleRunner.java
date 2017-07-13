@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.rectangles;
+package com.shao.progkievua.homework.lecture01.rectangles;
 
 import java.util.Random;
 

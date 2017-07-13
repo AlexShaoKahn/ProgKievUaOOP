@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.palindrome;
+package com.shao.progkievua.homework.lecture01.palindrome;
 
 import java.util.Arrays;
 import java.util.Random;

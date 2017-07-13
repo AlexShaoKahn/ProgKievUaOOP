@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.matrixturn;
+package com.shao.progkievua.homework.lecture01.matrixturn;
 
 public class MatrixRunner {
     public static void main(String[] args) {

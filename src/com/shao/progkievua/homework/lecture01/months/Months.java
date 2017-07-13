@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.months;
+package com.shao.progkievua.homework.lecture01.months;
 
 import java.time.Month;
 import java.util.Scanner;
