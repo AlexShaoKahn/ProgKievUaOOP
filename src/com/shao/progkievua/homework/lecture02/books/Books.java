@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.lecture02.Books;
+package com.shao.progkievua.homework.lecture02.books;
 
 import java.util.ArrayList;
 import java.util.Random;

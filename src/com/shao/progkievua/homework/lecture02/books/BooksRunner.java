@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.lecture02.Books;
+package com.shao.progkievua.homework.lecture02.books;
 
 class BooksRunner {
     public static void main(String[] args) {
