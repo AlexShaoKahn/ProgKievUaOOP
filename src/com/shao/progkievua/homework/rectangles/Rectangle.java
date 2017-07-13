@@ -1,4 +1,4 @@
-package com.shao.progkiev.ua.homework.rectangles;
+package com.shao.progkievua.homework.rectangles;
 
 public class Rectangle {
     private int height;
