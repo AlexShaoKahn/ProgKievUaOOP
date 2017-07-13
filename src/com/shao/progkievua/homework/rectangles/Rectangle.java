@@ -9,7 +9,7 @@ public class Rectangle {
         this.width = width;
     }
 
-    private int getPerimeter() {
+    int getPerimeter() {
         return (height + width) * 2;
     }
 
