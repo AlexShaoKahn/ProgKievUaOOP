@@ -32,4 +32,13 @@ class Lines {
         }
         return longestLine;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < lines.size(); i++) {
+            sb.append("Line ").append(i).append(": length is ").append(lines.get(i).getLength()).append("\n");
+        }
+        return sb.toString();
+    }
 }
