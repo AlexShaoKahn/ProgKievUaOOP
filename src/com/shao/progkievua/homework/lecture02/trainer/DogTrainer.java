@@ -9,24 +9,24 @@ public class DogTrainer {
     private final int age;
     private final List<Dog> dogs;
 
-    public DogTrainer(String name, int age) throws IllegalAccessException {
-        if (age <= 0 || age > 125) throw new IllegalAccessException("wrong age:" + age);
+    public DogTrainer(String name, int age) throws IllegalArgumentException {
+        if (age <= 0 || age > 125) throw new IllegalArgumentException("wrong age:" + age);
         dogs = new ArrayList<>();
         this.name = name;
         this.age = age;
     }
 
-    public DogTrainer(String name) throws IllegalAccessException {
+    public DogTrainer(String name) throws IllegalArgumentException {
         this(name, new Random().nextInt(50) + 20);
     }
 
 
-    public void trainDog() throws IllegalAccessException {
+    public void trainDog() throws IllegalArgumentException {
         dogs.add(new Dog());
     }
 
 
-    public void trainDogsPack() throws IllegalAccessException {
+    public void trainDogsPack() throws IllegalArgumentException {
         for (int i = 0; i < new Random().nextInt(10) + 2; i++) {
             dogs.add(new Dog());
         }

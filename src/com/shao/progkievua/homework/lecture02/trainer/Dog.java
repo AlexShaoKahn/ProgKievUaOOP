@@ -8,22 +8,22 @@ public class Dog {
     private final String name;
     private final int age;
 
-    public Dog(String name, int age) throws IllegalAccessException {
-        if (age <= 0 || age > 15) throw new IllegalAccessException("wrong age " + age + " must be in 1..15");
+    public Dog(String name, int age) throws IllegalArgumentException {
+        if (age <= 0 || age > 15) throw new IllegalArgumentException("wrong age " + age + " must be in 1..15");
         this.name = name;
         this.age = age;
         dogsIndex++;
     }
 
-    public Dog(String name) throws IllegalAccessException {
+    public Dog(String name) throws IllegalArgumentException {
         this(name, random.nextInt(15) + 1);
     }
 
-    public Dog(int age) throws IllegalAccessException {
+    public Dog(int age) throws IllegalArgumentException {
         this("Dog" + dogsIndex, age);
     }
 
-    public Dog() throws IllegalAccessException {
+    public Dog() throws IllegalArgumentException {
         this("Dog" + dogsIndex);
     }
 
