@@ -1,11 +1,11 @@
 package com.shao.progkievua.homework.lecture02.animal;
 
-abstract class Animal {
-    void run() {
+public class Animal {
+    public void run() {
         System.out.println(this.getClass().getSimpleName() + " runs.");
     }
 
-    void jump() {
+    public void jump() {
         System.out.println(this.getClass().getSimpleName() + " jumps.");
     }
 

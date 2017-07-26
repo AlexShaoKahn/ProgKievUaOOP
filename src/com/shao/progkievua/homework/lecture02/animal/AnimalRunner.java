@@ -1,6 +1,6 @@
 package com.shao.progkievua.homework.lecture02.animal;
 
-class AnimalRunner {
+public class AnimalRunner {
     public static void main(String[] args) {
         Puppy puppy = new Puppy("Roger");
 
