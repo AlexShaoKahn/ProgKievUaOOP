@@ -6,15 +6,15 @@ import java.util.List;
 public class Rectangles {
     private List<Rectangle> rectangles;
 
-    Rectangles() {
+    public Rectangles() {
         rectangles = new ArrayList<>();
     }
 
-    void addRectangle(Rectangle rectangle) {
+    public void addRectangle(Rectangle rectangle) {
         rectangles.add(rectangle);
     }
 
-    int getSummaryArea() {
+    public int getSummaryArea() {
         int result = 0;
         for (Rectangle rectangle : rectangles) {
             result += rectangle.getArea();

@@ -17,11 +17,11 @@ public class Months {
         scanner.close();
     }
 
-    private static String getMonth(int month) {
+    public static String getMonth(int month) {
         return Month.of(month).name();
     }
 
-    private static boolean isInRange(int month) {
+    public static boolean isInRange(int month) {
         if (month >= 1 && month <= 12) return true;
         else return false;
     }

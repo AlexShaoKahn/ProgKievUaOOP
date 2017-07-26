@@ -13,13 +13,13 @@ public class PalindromeRunner {
         else System.out.println("No palindromes");
     }
 
-    private static boolean isPalindrome(int num) {
+    public static boolean isPalindrome(int num) {
         StringBuilder str1 = new StringBuilder().append(num);
         StringBuilder str2 = new StringBuilder().append(str1).reverse();
         return str1.toString().equals(str2.toString());
     }
 
-    private static int[] generateNumbersArray() {
+    public static int[] generateNumbersArray() {
         Random random = new Random();
         int[] nums = new int[random.nextInt(20) + 5];
         for (int i = 0; i < nums.length; i++) {
@@ -28,7 +28,7 @@ public class PalindromeRunner {
         return nums;
     }
 
-    private static int getPalindrome(int[] nums) {
+    public static int getPalindrome(int[] nums) {
         int palindromes = 0;
         int palindromeIndex = 0;
         int i = 0;

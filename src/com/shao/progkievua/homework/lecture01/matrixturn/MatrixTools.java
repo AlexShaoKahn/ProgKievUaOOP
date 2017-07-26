@@ -2,7 +2,7 @@ package com.shao.progkievua.homework.lecture01.matrixturn;
 
 import java.util.Random;
 
-final class MatrixTools {
+public final class MatrixTools {
     private static Random random = new Random();
 
     private MatrixTools() {
@@ -18,7 +18,7 @@ final class MatrixTools {
         return m;
     }
 
-    static String matrixToString(int[][] m) {
+    public static String matrixToString(int[][] m) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < m.length; i++) {
             result.append("[");
@@ -31,7 +31,7 @@ final class MatrixTools {
         return result.toString();
     }
 
-    static int[][] turnMatrix(int[][] m, int degree, Side side) {
+    public static int[][] turnMatrix(int[][] m, int degree, Side side) {
         if (!isRightDegree(degree)) {
             System.out.println("90, 180 or 270 degrees only!");
             return null;
@@ -49,7 +49,7 @@ final class MatrixTools {
         return result;
     }
 
-    private static boolean isRightDegree(int degree) {
+    public static boolean isRightDegree(int degree) {
         if (degree == 90 || degree == 180 || degree == 270) return true;
         else return false;
     }

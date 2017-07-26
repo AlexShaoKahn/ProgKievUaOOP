@@ -4,16 +4,16 @@ public class Rectangle {
     private int height;
     private int width;
 
-    Rectangle(int height, int width) {
+    public Rectangle(int height, int width) {
         this.height = height;
         this.width = width;
     }
 
-    int getPerimeter() {
+    public int getPerimeter() {
         return (height + width) * 2;
     }
 
-    int getArea() {
+    public int getArea() {
         return height * width;
     }
 
