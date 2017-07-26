@@ -2,18 +2,18 @@ package com.shao.progkievua.homework.lecture02.immutable;
 
 import java.util.ArrayList;
 
-class Lines {
+public class Lines {
     private ArrayList<Line> lines;
 
-    Lines() {
+    public Lines() {
         lines = new ArrayList<>();
     }
 
-    void add(Line line) {
+    public void add(Line line) {
         lines.add(line);
     }
 
-    double sumLength() {
+    public double sumLength() {
         double summ = 0;
         for (Line line : lines) {
             summ += line.getLength();
@@ -21,7 +21,7 @@ class Lines {
         return summ;
     }
 
-    Line longestLine() {
+    public Line longestLine() {
         double length = -1;
         Line longestLine = null;
         for (Line line : lines) {
