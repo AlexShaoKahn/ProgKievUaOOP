@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-final class Book {
+public final class Book {
     private static List<String> binds = Arrays.asList(
             "Saddle-stitching", "Perfect Binding", "Section Sewn",
             "Wire Binding", "Spiral Binding", "Cased-in Wiro Binding",
@@ -21,7 +21,7 @@ final class Book {
     private final double price;
     private final int bindingType;
 
-    Book() {
+    public Book() {
         Random random = new Random();
         this.id = lastId++;
         this.name = "BookName" + random.nextInt(1000);
@@ -52,15 +52,15 @@ final class Book {
         return book.toString();
     }
 
-    int getId() {
+    public int getId() {
         return id;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    String getAuthors() {
+    public String getAuthors() {
         StringBuilder authors = new StringBuilder();
         for (int i = 0; i < this.authors.size(); i++) {
             authors.append(this.authors.get(i));
@@ -69,27 +69,27 @@ final class Book {
         return authors.toString();
     }
 
-    String getPubHouse() {
+    public String getPubHouse() {
         return pubHouse;
     }
 
-    int getPubYear() {
+    public int getPubYear() {
         return pubYear;
     }
 
-    int getPagesQuantity() {
+    public int getPagesQuantity() {
         return pagesQuantity;
     }
 
-    String getPrice() {
+    public String getPrice() {
         return price + " UAH";
     }
 
-    String getBindingType() {
+    public String getBindingType() {
         return binds.get(bindingType);
     }
 
-    boolean checkAuthor(String author) {
+    public boolean checkAuthor(String author) {
         for (String s : authors) {
             if (s.equals(author)) return true;
         }

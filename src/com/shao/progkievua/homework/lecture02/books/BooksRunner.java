@@ -1,6 +1,6 @@
 package com.shao.progkievua.homework.lecture02.books;
 
-class BooksRunner {
+public class BooksRunner {
     public static void main(String[] args) {
         Books bookShelf = new Books();
         bookShelf.addRandomBooks();

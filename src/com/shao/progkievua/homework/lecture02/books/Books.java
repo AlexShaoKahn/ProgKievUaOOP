@@ -3,25 +3,25 @@ package com.shao.progkievua.homework.lecture02.books;
 import java.util.ArrayList;
 import java.util.Random;
 
-class Books {
+public class Books {
     private ArrayList<Book> books;
 
-    Books() {
+    public Books() {
         books = new ArrayList<>();
     }
 
-    private void addBook(Book book) {
+    public void addBook(Book book) {
         books.add(book);
     }
 
-    void addRandomBooks() {
+    public void addRandomBooks() {
         Random random = new Random();
         for (int i = 0; i < random.nextInt(10) + 5; i++) {
             addBook(new Book());
         }
     }
 
-    Books selectByAuthor(String author) {
+    public Books selectByAuthor(String author) {
         Books result = new Books();
         for (Book book : books) {
             if (book.checkAuthor(author)) result.addBook(book);
@@ -29,7 +29,7 @@ class Books {
         return result;
     }
 
-    Books selectByPubHouse(String pubHouse) {
+    public Books selectByPubHouse(String pubHouse) {
         Books result = new Books();
         for (Book book : books) {
             if (book.getPubHouse().equals(pubHouse)) result.addBook(book);
@@ -37,7 +37,7 @@ class Books {
         return result;
     }
 
-    Books selectAfterYear(int pubYear) {
+    public Books selectAfterYear(int pubYear) {
         Books result = new Books();
         for (Book book : books) {
             if (book.getPubYear() > pubYear) result.addBook(book);
