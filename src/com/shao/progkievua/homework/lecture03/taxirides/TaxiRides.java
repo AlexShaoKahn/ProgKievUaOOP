@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.lecture03.TaxiRides;
+package com.shao.progkievua.homework.lecture03.taxirides;
 
 import java.util.ArrayList;
 import java.util.List;

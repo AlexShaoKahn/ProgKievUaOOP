@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.lecture03.TaxiRides;
+package com.shao.progkievua.homework.lecture03.taxirides;
 
 public final class VipTariff implements TaxiTariff {
     public static VipTariff instance;

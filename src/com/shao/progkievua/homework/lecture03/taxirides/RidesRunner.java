@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.lecture03.TaxiRides;
+package com.shao.progkievua.homework.lecture03.taxirides;
 
 public class RidesRunner {
     public static void main(String[] args) {

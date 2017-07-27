@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.lecture03.Text;
+package com.shao.progkievua.homework.lecture03.text;
 
 import java.util.ArrayList;
 import java.util.List;

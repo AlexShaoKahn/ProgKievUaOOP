@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.lecture03.Text;
+package com.shao.progkievua.homework.lecture03.text;
 
 public class TextRunner {
     public static void main(String[] args) {
