@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.shao.progkievua.homework.lecture03.Computer</OriginalElement>
+  <nodes>
+    <node x="445.425" y="383.0">com.shao.progkievua.homework.lecture03.Computer.RAM</node>
+    <node x="0.0" y="396.0">com.shao.progkievua.homework.lecture03.Computer.Processor</node>
+    <node x="188.62070707070706" y="0.0">com.shao.progkievua.homework.lecture03.Computer.FixedMemory</node>
+    <node x="426.425" y="1052.0">com.shao.progkievua.homework.lecture03.Computer.ComputerRunner</node>
+    <node x="628.9656565656566" y="55.0">com.shao.progkievua.homework.lecture03.Computer.Memory</node>
+    <node x="635.425" y="287.0">com.shao.progkievua.homework.lecture03.Computer.FDD</node>
+    <node x="254.425" y="383.0">com.shao.progkievua.homework.lecture03.Computer.HDD</node>
+    <node x="410.925" y="666.0">com.shao.progkievua.homework.lecture03.Computer.Computer</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.RAM" target="com.shao.progkievua.homework.lecture03.Computer.FixedMemory">
+      <point x="-42.5" y="-58.5" />
+      <point x="487.925" y="247.0" />
+      <point x="378.62070707070706" y="247.0" />
+      <point x="76.0" y="113.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.Computer" target="com.shao.progkievua.homework.lecture03.Computer.RAM">
+      <point x="0.0" y="-168.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.Computer" target="com.shao.progkievua.homework.lecture03.Computer.Memory">
+      <point x="79.66666666666663" y="-168.0" />
+      <point x="610.0916666666666" y="636.0" />
+      <point x="846.925" y="636.0" />
+      <point x="846.925" y="267.0" />
+      <point x="752.1656565656566" y="267.0" />
+      <point x="35.200000000000045" y="58.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.HDD" target="com.shao.progkievua.homework.lecture03.Computer.Memory">
+      <point x="42.75" y="-58.5" />
+      <point x="382.675" y="257.0" />
+      <point x="646.5656565656566" y="257.0" />
+      <point x="-70.39999999999998" y="58.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.RAM" target="com.shao.progkievua.homework.lecture03.Computer.Memory">
+      <point x="42.5" y="-58.5" />
+      <point x="572.925" y="267.0" />
+      <point x="681.7656565656565" y="267.0" />
+      <point x="-35.200000000000045" y="58.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.Computer" target="com.shao.progkievua.homework.lecture03.Computer.FDD">
+      <point x="53.111111111111086" y="-168.0" />
+      <point x="583.536111111111" y="626.0" />
+      <point x="786.175" y="626.0" />
+      <point x="50.25" y="154.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.FDD" target="com.shao.progkievua.homework.lecture03.Computer.Memory">
+      <point x="0.0" y="-154.5" />
+      <point x="735.925" y="267.0" />
+      <point x="716.9656565656566" y="267.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.Computer" target="com.shao.progkievua.homework.lecture03.Computer.HDD">
+      <point x="-26.555555555555543" y="-168.0" />
+      <point x="503.86944444444447" y="616.0" />
+      <point x="339.925" y="616.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.Computer" target="com.shao.progkievua.homework.lecture03.Computer.Processor">
+      <point x="-106.22222222222217" y="-168.0" />
+      <point x="424.20277777777784" y="646.0" />
+      <point x="47.25" y="646.0" />
+      <point x="-47.25" y="45.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.Computer" target="com.shao.progkievua.homework.lecture03.Computer.FixedMemory">
+      <point x="-53.111111111111086" y="-168.0" />
+      <point x="477.3138888888889" y="626.0" />
+      <point x="199.5" y="626.0" />
+      <point x="199.5" y="267.0" />
+      <point x="226.62070707070706" y="267.0" />
+      <point x="-76.0" y="113.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.HDD" target="com.shao.progkievua.homework.lecture03.Computer.FixedMemory">
+      <point x="-42.75" y="-58.5" />
+      <point x="297.175" y="267.0" />
+      <point x="302.62070707070706" y="267.0" />
+      <point x="0.0" y="113.5" />
+    </edge>
+    <edge source="com.shao.progkievua.homework.lecture03.Computer.ComputerRunner" target="com.shao.progkievua.homework.lecture03.Computer.Computer">
+      <point x="52.0" y="-31.5" />
+      <point x="582.425" y="1027.0" />
+      <point x="590.175" y="1027.0" />
+      <point x="59.75" y="168.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.44493392070484583" x="429.0" y="557.5" />
+  <SelectedNodes>
+    <node>com.shao.progkievua.homework.lecture03.Computer.HDD</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
