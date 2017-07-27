@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.lecture03.text;
+package com.shao.progkievua.homework.lecture03.Text;
 
 public class Word {
     private String word;

@@ -1,4 +1,4 @@
-package com.shao.progkievua.homework.lecture03.taxirides;
+package com.shao.progkievua.homework.lecture03.TaxiRides;
 
 import java.util.Random;
 
