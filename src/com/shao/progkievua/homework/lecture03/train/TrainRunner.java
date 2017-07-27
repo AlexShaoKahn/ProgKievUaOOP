@@ -6,7 +6,7 @@ public class TrainRunner {
 
         System.out.println("Waking up...\nCounting cars...");
 
-        int countedCars = train.countCars();
+        int countedCars = TrainCircle.findLength(train);
 
         System.out.println("We counted " + countedCars + " cars.");
         System.out.println("It is " + train.isLength(countedCars) + "!");

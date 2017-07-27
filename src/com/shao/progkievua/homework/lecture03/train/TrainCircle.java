@@ -19,25 +19,25 @@ public class TrainCircle implements Train {
 
     }
 
-    public int countCars() {
+    public static int findLength(Train train) {
         int countSteps = 0;
         int expectedLength;
-        lightOn();
+        train.lightOn();
 
         do {
-            turnLeft();
+            train.turnLeft();
             countSteps++;
-            while (!isLightOn()) {
-                turnLeft();
+            while (!train.isLightOn()) {
+                train.turnLeft();
                 countSteps++;
             }
-            lightOff();
+            train.lightOff();
             expectedLength = countSteps;
             for (int i = countSteps; i > 0; i--) {
-                turnRight();
+                train.turnRight();
                 countSteps--;
             }
-        } while (isLightOn());
+        } while (train.isLightOn());
 
         return expectedLength;
     }
