@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/*Procedural ShitCode*/
+@Deprecated
 public final class Directory {
     private final static int size = 1;
     private final static Random random = new Random();

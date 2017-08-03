@@ -2,6 +2,8 @@ package com.shao.progkievua.homework.lecture04.filesystem;
 
 import java.util.Random;
 
+/*Procedural ShitCode*/
+@Deprecated
 public final class File {
     private final static Random random = new Random();
     private static int counter;
