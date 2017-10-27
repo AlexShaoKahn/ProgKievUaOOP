@@ -1,5 +1,6 @@
 package com.shao.progkievua.homework.lecture7.filtering;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -21,9 +22,15 @@ public class Filtering {
                 new Person("George", 17),
                 new Person("Patrick", 12)
         );
-        Collections.sort(persons, Collections.reverseOrder());
-        persons = persons.stream().filter(person -> person.getAge() >= 12 && person.getAge() <= 17).collect(Collectors.toList());
-        for (Person person : persons) {
+        List<Person> personsFiltered = new ArrayList<>();
+
+        Collections.sort(persons);
+        for (int i = 17; i >= 12; i--) {
+            int finalI = i;
+            personsFiltered.addAll(persons.stream().filter(person -> person.getAge() == finalI).collect(Collectors.toList()));
+        }
+
+        for (Person person : personsFiltered) {
             System.out.println(person);
         }
     }
