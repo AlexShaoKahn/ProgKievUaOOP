@@ -1,16 +1,20 @@
 package com.shao.progkievua.courseproject;
 
-public class Event implements Element {
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Event implements DBListElement {
     private long siteId;
     private long showId;
     private long hallId;
     private long eventId;
     private String displaySiteName;
     private String displaySiteAddr;
-    private long origin;
+    private String origin;
     private String widgetUrl;
+    private LocalDateTime date;
 
-    public Event(long siteId, long showId, long hallId, long eventId, String displaySiteName, String displaySiteAddr, long origin, String widgetUrl) {
+    public Event(long siteId, long showId, long hallId, long eventId, String displaySiteName, String displaySiteAddr, String origin, String widgetUrl) {
         this.siteId = siteId;
         this.showId = showId;
         this.hallId = hallId;
@@ -19,6 +23,33 @@ public class Event implements Element {
         this.displaySiteAddr = displaySiteAddr;
         this.origin = origin;
         this.widgetUrl = widgetUrl;
+        this.date = parseDate(origin);
+    }
+
+    private LocalDateTime parseDate(String origin) {
+        int year = Integer.parseInt(origin.substring(0, 4));
+        int month = Integer.parseInt(origin.substring(4, 6));
+        int day = Integer.parseInt(origin.substring(6, 8));
+        int hours = Integer.parseInt(origin.substring(8, 10));
+        int minutes = Integer.parseInt(origin.substring(10, 12));
+        int seconds = Integer.parseInt(origin.substring(12, 14));
+        return LocalDateTime.of(year, month, day, hours, minutes, seconds);
+    }
+
+    private String dateToString(LocalDateTime date) {
+        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("Site: ").append(displaySiteName);
+        if (displaySiteAddr != null && !displaySiteAddr.isEmpty())
+            result.append("\nAddress: ").append(displaySiteAddr);
+        result.append("\nDate: ").append(dateToString(parseDate(origin)));
+        result.append("\nBuy URL: ").append(widgetUrl);
+        result.append("\n---------------------------------------------------");
+        return result.toString();
     }
 
     @Override
@@ -31,49 +62,7 @@ public class Event implements Element {
         return widgetUrl;
     }
 
-    public long getSiteId() {
-        return siteId;
-    }
-
-    public long getShowId() {
-        return showId;
-    }
-
-    public long getHallId() {
-        return hallId;
-    }
-
-    public String getDisplaySiteName() {
-        return displaySiteName;
-    }
-
-    public String getDisplaySiteAddr() {
-        return displaySiteAddr;
-    }
-
-    public long getOrigin() {
-        return origin;
-    }
-
-    @Override
-    public String toString() {
-        return new StringBuilder()
-                .append("siteId: ")
-                .append(siteId)
-                .append("\tshowId: ")
-                .append(showId)
-                .append("\thallId: ")
-                .append(hallId)
-                .append("\teventId: ")
-                .append(eventId)
-                .append("\tsiteName: ")
-                .append(displaySiteName)
-                .append("\tsiteAddr: ")
-                .append(displaySiteAddr)
-                .append("\ttime: ")
-                .append(origin)
-                .append("\tURL: ")
-                .append(widgetUrl)
-                .toString();
+    public LocalDateTime getDate() {
+        return date;
     }
 }

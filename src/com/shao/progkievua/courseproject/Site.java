@@ -1,6 +1,6 @@
 package com.shao.progkievua.courseproject;
 
-public class Site implements Element {
+public class Site implements DBListElement {
     private long siteId;
     private String name;
     private String widgetUrl;
@@ -12,28 +12,21 @@ public class Site implements Element {
     }
 
     @Override
-    public long getId() {
-        return siteId;
+    public String toString() {
+        return new StringBuilder()
+                .append("ID: ").append(siteId)
+                .append(", SITE: ").append(name)
+                .append(", URL: ").append(widgetUrl)
+                .toString();
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public long getId() {
+        return siteId;
     }
 
     @Override
     public String getUrl() {
         return widgetUrl;
-    }
-
-    @Override
-    public String toString() {
-        return new StringBuilder()
-                .append("siteId: ")
-                .append(siteId)
-                .append("\tname: ")
-                .append(name)
-                .append("\tURL: ")
-                .append(widgetUrl)
-                .toString();
     }
 }

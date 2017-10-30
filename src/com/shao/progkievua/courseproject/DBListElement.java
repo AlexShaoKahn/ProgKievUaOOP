@@ -1,7 +1,6 @@
 package com.shao.progkievua.courseproject;
 
-public interface Element {
+public interface DBListElement {
     public long getId();
-
     public String getUrl();
 }
