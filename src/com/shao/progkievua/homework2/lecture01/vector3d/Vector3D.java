@@ -24,7 +24,7 @@ public class Vector3D implements Serializable {
     }
 
     public static int scalar(Vector3D r1, Vector3D r2) {
-        return r1.x + r2.x + r1.y * r2.y + r1.z * r2.z;
+        return r1.x * r2.x + r1.y * r2.y + r1.z * r2.z;
     }
 
     public static Vector3D vector(Vector3D r1, Vector3D r2) {
