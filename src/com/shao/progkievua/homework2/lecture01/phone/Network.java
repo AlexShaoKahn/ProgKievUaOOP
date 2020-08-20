@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Network implements Serializable {
-    List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Network() {
         numbers = randomNumbers();
