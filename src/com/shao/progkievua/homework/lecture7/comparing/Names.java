@@ -1,11 +1,6 @@
 package com.shao.progkievua.homework.lecture7.comparing;
 
-import jdk.nashorn.internal.ir.WhileNode;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Names {
     private List<String> names = new ArrayList<>();
@@ -15,9 +10,7 @@ public class Names {
     }
 
     public Names(String... names) {
-        for (String name : names) {
-            this.names.add(name);
-        }
+        Collections.addAll(Arrays.asList(names));
     }
 
     public List<String> alphabetSort() {
@@ -39,7 +32,7 @@ public class Names {
 
     private List<String> lengthSort() {
         List<String> names = new ArrayList<>(this.names);
-        Collections.sort(names, new LengthComparator());
+        names.sort(new LengthComparator());
         return names;
     }
 

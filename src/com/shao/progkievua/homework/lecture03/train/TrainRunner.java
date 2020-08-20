@@ -10,5 +10,7 @@ public class TrainRunner {
 
         System.out.println("We counted " + countedCars + " cars.");
         System.out.println("It is " + train.isLength(countedCars) + "!");
+
+
     }
 }
