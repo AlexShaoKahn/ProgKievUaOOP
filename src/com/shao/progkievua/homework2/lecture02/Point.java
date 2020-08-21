@@ -3,7 +3,7 @@ package com.shao.progkievua.homework2.lecture02;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Point implements Serializable {
+public class Point implements Serializable, Cloneable {
     private double x;
     private double y;
 
@@ -38,6 +38,11 @@ public class Point implements Serializable {
         Point point = (Point) o;
         return Double.compare(point.x, x) == 0 &&
                 Double.compare(point.y, y) == 0;
+    }
+
+    @Override
+    protected Point clone() throws CloneNotSupportedException {
+        return (Point) super.clone();
     }
 
     @Override

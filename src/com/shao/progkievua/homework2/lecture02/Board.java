@@ -11,11 +11,27 @@ public class Board implements Serializable {
     }
 
     public void addShape(Shape shape, int boardPart) {
-        boardParts[boardPart] = shape;
+        try {
+            boardParts[boardPart] = shape;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getLocalizedMessage());
+        }
     }
 
     public void removeShape(int boardPart) {
-        boardParts[boardPart] = null;
+        try {
+            boardParts[boardPart] = null;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    public double getTotalArea() {
+        double totalArea = 0;
+        for (Shape boardPart : boardParts) {
+            if (boardPart != null) totalArea += boardPart.getArea();
+        }
+        return totalArea;
     }
 
     public Shape[] getBoardParts() {
@@ -49,6 +65,7 @@ public class Board implements Serializable {
             else result.append(boardParts[i].toString());
             result.append(System.lineSeparator());
         }
+        result.append("Total area = ").append(String.format("%5.2f", getTotalArea()));
         return result.toString();
     }
 }

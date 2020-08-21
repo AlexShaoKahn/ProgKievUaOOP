@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Shape {
-    public List<Point> points = new ArrayList<>();
+    protected List<Point> points = new ArrayList<>();
 
-    public List<Point> getPoints() {
-        return new ArrayList<>(points);
+    Shape() {
+    }
+
+    public List<Point> getPoints() throws CloneNotSupportedException {
+        List<Point> points = new ArrayList<>();
+        for (Point point : this.points) {
+            points.add(point.clone());
+        }
+        return points;
     }
 
     public abstract double getArea();
