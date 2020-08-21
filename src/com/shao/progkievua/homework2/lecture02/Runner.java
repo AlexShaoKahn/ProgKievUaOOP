@@ -25,7 +25,7 @@ public class Runner {
                 new Point(8, 3),
                 new Point(5, 0));
 
-        board.addShape(triangle, 1);
+        board.addShape(triangle, 0);
         board.addShape(rectangle1, 1);
         board.addShape(hexagon, 2);
         board.addShape(rectangle2, 3);
