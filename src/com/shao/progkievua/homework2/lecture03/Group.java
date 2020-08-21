@@ -33,7 +33,7 @@ public class Group implements Serializable {
 
     public Student findStudentBySurname(String surname) throws NoStudentFoundException {
         for (Student student : groupList) {
-            if (student.getSurname().equals(surname)) return student;
+            if (student != null && student.getSurname().equals(surname)) return student;
         }
         throw new NoStudentFoundException();
     }
