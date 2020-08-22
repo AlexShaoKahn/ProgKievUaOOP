@@ -3,7 +3,7 @@ package com.shao.progkievua.homework2.lecture03;
 import java.io.Serializable;
 
 public class Group implements Serializable {
-    private Student[] groupList = new Student[10];
+    protected Student[] groupList = new Student[10];
 
     public Group() {
     }
