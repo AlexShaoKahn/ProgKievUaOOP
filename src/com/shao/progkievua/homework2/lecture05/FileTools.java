@@ -11,25 +11,36 @@ import java.util.List;
 
 public interface FileTools {
 
-    static void fileCopy(File fromFile, File toFile) throws IOException {
-        try (
-                InputStream in = new BufferedInputStream(new FileInputStream(fromFile));
-                OutputStream out = new BufferedOutputStream(new FileOutputStream(toFile))
-        ) {
+    static void fileCopy(File fromFile, File toFile) {
+        try (FileInputStream fis = new FileInputStream(fromFile.toString());
+             FileOutputStream fos = new FileOutputStream(toFile.toString())) {
             byte[] buffer = new byte[1024];
-            int lengthRead;
-            while ((lengthRead = in.read(buffer)) > 0) {
-                out.write(buffer, 0, lengthRead);
-                out.flush();
+            int byteread;
+
+            for (; (byteread = fis.read(buffer)) > 0; ) {
+                fos.write(buffer, 0, byteread);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+//        try (
+//                InputStream in = new BufferedInputStream(new FileInputStream(fromFile));
+//                OutputStream out = new BufferedOutputStream(new FileOutputStream(toFile))
+//        ) {
+//            byte[] buffer = new byte[1024];
+//            int lengthRead;
+//            while ((lengthRead = in.read(buffer)) > 0) {
+//                out.write(buffer, 0, lengthRead);
+//                out.flush();
+//            }
+//        }
     }
 
-    static void fileCopy(String fromFileName, String toFileName) throws IOException {
+    static void fileCopy(String fromFileName, String toFileName) {
         fileCopy(new File(fromFileName), new File(toFileName));
     }
 
-    static String[] copyAllFilesByExtension(String fromDirPath, String toDirPath, FileExtensions extension) throws IOException {
+    static String[] copyAllFilesByExtension(String fromDirPath, String toDirPath, FileExtensions extension) {
         File fromDir = new File(fromDirPath);
         String[] filteredFiles = fromDir.list(((dir, name) -> name.endsWith("." + extension.name().toLowerCase())));
         if (filteredFiles != null)
