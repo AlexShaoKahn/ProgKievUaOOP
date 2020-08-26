@@ -7,44 +7,55 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Runner {
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) {
         int arraySize = 200_000_000;
         System.out.println("1. Generating array of " + arraySize + " elements. Please, wait!");
-        List<Integer> integerList = generateList(arraySize);
+        int[] intArray = generateList(arraySize);
         System.out.print("2. Calculating sum in one thread: \t");
-        long oneThreadTimeStampBegin = System.currentTimeMillis();
-        System.out.print(listSum(integerList));
-        long oneThreadTimeStampEnd = System.currentTimeMillis();
-        System.out.println("\t(" + (oneThreadTimeStampEnd - oneThreadTimeStampBegin) + " millis)");
+        System.out.print(listSum(intArray));
+        System.out.println(" " + listSumAverage(intArray, 100));
         System.out.print("3. Calculating sum in multi threads: \t");
-        long multiThreadTimeStampBegin = System.currentTimeMillis();
-        System.out.print(multiThreadListSum(integerList));
-        long multiThreadTimeStampEnd = System.currentTimeMillis();
-        System.out.println("\t(" + (multiThreadTimeStampEnd - multiThreadTimeStampBegin) + " millis)");
+        try {
+            System.out.print(multiThreadListSum(intArray, 4));
+            System.out.println(" " + multiThreadListSumAverage(intArray, 5, 100));
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static List<Integer> generateList(int size) {
+    private static int[] generateList(int size) {
         Random random = new Random();
-        return IntStream.range(0, size).mapToObj(i -> random.nextInt(10)).collect(Collectors.toList());
+        int[] intArray = new int[size];
+        for (int i = 0; i < size; i++) {
+            intArray[i] = random.nextInt(10);
+        }
+        return intArray;
     }
 
-    private static int listSum(List<Integer> integerList) {
-        return integerList.stream().mapToInt(integer -> integer).sum();
+    private static long listSum(int[] intArray) {
+        long sum = 0;
+        for (int i : intArray) {
+            sum += i;
+        }
+        return sum;
     }
 
-    private static int multiThreadListSum(List<Integer> integerList) throws ExecutionException, InterruptedException {
-        int sum = 0;
-        ExecutorService executor = Executors.newFixedThreadPool(10);
+    private static long multiThreadListSum(int[] intArray, int threadsNum) throws ExecutionException, InterruptedException {
+        long sum = 0;
+        ExecutorService executor = Executors.newFixedThreadPool(threadsNum);
         List<Future<Integer>> futures = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        int partSize = intArray.length / threadsNum;
+        int partBegin;
+        int partEnd;
+        for (int i = 0; i < threadsNum; i++) {
+            partBegin = i * partSize;
+            partEnd = (i + 1) * partSize - 1;
             futures.add(executor.submit(new RangeListSum(
-                    integerList,
-                    i * integerList.size() / 10,
-                    i != 9 ? (i + 1) * integerList.size() / 10 - 1 : integerList.size() - 1)));
+                    intArray,
+                    partBegin,
+                    intArray.length - partEnd < partSize ? intArray.length - 1 : partEnd)));
         }
         for (Future<Integer> future : futures) {
             sum += future.get();
@@ -52,4 +63,33 @@ public class Runner {
         executor.shutdown();
         return sum;
     }
+
+    private static String listSumAverage(int[] intArray, int simulationsNumber) {
+        long oneThreadTimeStampBegin;
+        long oneThreadTimeStampEnd;
+        long mils = 0;
+        for (int i = 0; i < simulationsNumber; i++) {
+            oneThreadTimeStampBegin = System.currentTimeMillis();
+            listSum(intArray);
+            oneThreadTimeStampEnd = System.currentTimeMillis();
+            mils += oneThreadTimeStampEnd - oneThreadTimeStampBegin;
+        }
+
+        return "(average millis for " + simulationsNumber + " times is " + (mils / simulationsNumber + ")");
+    }
+
+    private static String multiThreadListSumAverage(int[] intArray, int threadNum, int simulationsNumber) throws ExecutionException, InterruptedException {
+        long oneThreadTimeStampBegin;
+        long oneThreadTimeStampEnd;
+        long mils = 0;
+        for (int i = 0; i < simulationsNumber; i++) {
+            oneThreadTimeStampBegin = System.currentTimeMillis();
+            multiThreadListSum(intArray, threadNum);
+            oneThreadTimeStampEnd = System.currentTimeMillis();
+            mils += oneThreadTimeStampEnd - oneThreadTimeStampBegin;
+        }
+
+        return "(average millis for " + simulationsNumber + " times is " + (mils / simulationsNumber + ")");
+    }
+
 }

@@ -1,23 +1,25 @@
 package com.shao.progkievua.homework2.lecture06.multitheadsum;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.stream.IntStream;
 
 public class RangeListSum implements Callable<Integer>, Serializable {
-    private List<Integer> integerList;
+    private int[] intArray;
     private int fromIndex;
     private int toIndex;
 
-    public RangeListSum(List<Integer> integerList, int fromIndex, int toIndex) {
+    public RangeListSum(int[] intArray, int fromIndex, int toIndex) {
         this.fromIndex = fromIndex;
         this.toIndex = toIndex;
-        this.integerList = integerList;
+        this.intArray = intArray;
     }
 
     private int getRangeSum() {
-        return IntStream.rangeClosed(fromIndex, toIndex).map(i -> integerList.get(i)).sum();
+        int sum = 0;
+        for (int i = fromIndex; i <= toIndex; i++) {
+            sum += intArray[i];
+        }
+        return sum;
     }
 
     @Override
