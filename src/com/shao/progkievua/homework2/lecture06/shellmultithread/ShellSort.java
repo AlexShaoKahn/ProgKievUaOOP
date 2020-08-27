@@ -2,7 +2,7 @@ package com.shao.progkievua.homework2.lecture06.shellmultithread;
 
 public class ShellSort implements Runnable {
     private int[] array;
-    Thread thr;
+    private Thread thr;
     private int begin;
     private int end;
     private int index;
