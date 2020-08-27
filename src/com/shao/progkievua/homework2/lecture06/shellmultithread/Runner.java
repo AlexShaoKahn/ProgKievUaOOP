@@ -40,6 +40,10 @@ public class Runner {
             }
         }
 
+        return mergeArrays(array, shellSorts);
+    }
+
+    private static int[] mergeArrays(int[] array, ShellSort[] shellSorts) {
         int[] result = new int[array.length];
         for (int i = 0; i < result.length; i++) {
             int min = Integer.MAX_VALUE;
@@ -52,7 +56,6 @@ public class Runner {
             }
             if (k != -1) result[i] = shellSorts[k].pushElement();
         }
-
         return result;
     }
 
