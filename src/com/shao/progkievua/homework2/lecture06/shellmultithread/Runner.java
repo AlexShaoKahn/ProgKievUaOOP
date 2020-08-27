@@ -1,17 +1,11 @@
 package com.shao.progkievua.homework2.lecture06.shellmultithread;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class Runner {
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        int[] array = generateArray(50);
+    public static void main(String[] args) {
+        int[] array = generateArray(20);
         System.out.println("Unsorted array:");
         System.out.println(Arrays.toString(array));
         System.out.println("Sorted array:");
@@ -27,24 +21,39 @@ public class Runner {
         return array;
     }
 
-    private static int[] multiThreadShellSort(int[] array, int threadsNumber) throws ExecutionException, InterruptedException {
-        int[] result = new int[array.length];
-        int index = 0;
-        int threads = threadsNumber > 10 ? 10 : threadsNumber < 1 ? 1 : threadsNumber;
-        ExecutorService executor = Executors.newFixedThreadPool(threads);
-        List<Future<int[]>> futures = new ArrayList<>();
-        for (int i = 0; i < threads; i++) {
-            futures.add(executor.submit(new ShellSort(Arrays.copyOfRange(array, i * array.length / threads, i == threads - 1 ? array.length : (i + 1) * array.length / threads))));
+    private static int[] multiThreadShellSort(int[] array, int threadsNumber) {
+        ShellSort[] shellSorts = new ShellSort[threadsNumber];
+        int step = array.length / threadsNumber;
+        int begin;
+        int end;
+        for (int i = 0; i < threadsNumber; i++) {
+            begin = i * step;
+            end = (i + 1) * step - 1;
+            if (i == threadsNumber - 1) end = array.length - 1;
+            shellSorts[i] = new ShellSort(array, begin, end);
         }
-        for (Future<int[]> future : futures) {
-            for (int i : future.get()) {
-                result[index++] = i;
+        for (ShellSort shellSort : shellSorts) {
+            try {
+                shellSort.getThr().join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
-        futures.add(executor.submit(new ShellSort(result)));
-        executor.shutdown();
-        return futures.get(futures.size() - 1).get();
-    }
 
+        int[] result = new int[array.length];
+        for (int i = 0; i < result.length; i++) {
+            int min = Integer.MAX_VALUE;
+            int k = -1;
+            for (int j = 0; j < shellSorts.length; j++) {
+                if (!shellSorts[j].isStop() && min > shellSorts[j].getElement()) {
+                    min = shellSorts[j].getElement();
+                    k = j;
+                }
+            }
+            if (k != -1) result[i] = shellSorts[k].pushElement();
+        }
+
+        return result;
+    }
 
 }
