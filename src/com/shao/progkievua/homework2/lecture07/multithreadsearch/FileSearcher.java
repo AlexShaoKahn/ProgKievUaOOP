@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class FileSearcher implements Runnable {
 
-    public static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
+    private static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
     private File fileName;
     private FileExtensions extension;
     private File startDir;
@@ -35,13 +35,17 @@ public class FileSearcher implements Runnable {
         this.startDir = startDir;
     }
 
-    @Override
-    public void run() {
-        if (fileName != null) searchByFilename();
-        else searchByExtension();
+    public static ThreadPoolExecutor getExecutor() {
+        return executor;
     }
 
-    private void searchByFilename() {
+    @Override
+    public void run() {
+        if (fileName != null) searchFile(fileName);
+        else searchFile(extension);
+    }
+
+    private void searchFile(File fileName) {
         File[] dirList = startDir.listFiles();
         if (dirList != null)
             for (File file : dirList) {
@@ -54,7 +58,7 @@ public class FileSearcher implements Runnable {
             }
     }
 
-    private void searchByExtension() {
+    private void searchFile(FileExtensions extension) {
         File[] dirList = startDir.listFiles();
         if (dirList != null)
             for (File file : dirList) {

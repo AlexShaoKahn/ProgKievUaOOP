@@ -8,15 +8,15 @@ public class Runner {
         FileSearcher fileSearcherByExtension = new FileSearcher(FileExtensions.TXT, startDir);
         FileSearcher fileSearcherByName = new FileSearcher("fileToCopy4.txt", startDir);
 
-        FileSearcher.executor.submit(new Thread(fileSearcherByExtension));
-        while (FileSearcher.executor.getActiveCount() > 0) {
+        FileSearcher.getExecutor().submit(fileSearcherByExtension);
+        while (FileSearcher.getExecutor().getActiveCount() > 0) {
         }
 
         System.out.println("---------------------------------------");
-        FileSearcher.executor.submit(new Thread(fileSearcherByName));
-        while (FileSearcher.executor.getActiveCount() > 0) {
+        FileSearcher.getExecutor().submit(fileSearcherByName);
+        while (FileSearcher.getExecutor().getActiveCount() > 0) {
         }
 
-        FileSearcher.executor.shutdown();
+        FileSearcher.getExecutor().shutdown();
     }
 }
