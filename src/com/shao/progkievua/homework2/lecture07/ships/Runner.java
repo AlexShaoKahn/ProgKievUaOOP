@@ -4,7 +4,7 @@ public class Runner {
     public static void main(String[] args) {
         Port port = new Port(3);
         port.openPort();
-        port.unloadFleet(generateFleet(10));
+        port.unloadFleet(generateFleet(5));
         port.closePort();
     }
 

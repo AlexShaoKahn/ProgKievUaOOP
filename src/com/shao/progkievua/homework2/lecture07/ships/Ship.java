@@ -7,7 +7,7 @@ public class Ship implements Runnable {
     private int crates;
 
     public Ship() {
-        this("Ship " + new Random().nextInt(100000), 10);
+        this("Ship " + new Random().nextInt(100), 10);
     }
 
     public Ship(String name, int crates) {
@@ -36,9 +36,10 @@ public class Ship implements Runnable {
     }
 
     private void unloadCrate() throws InterruptedException {
+        Random random = new Random();
         System.out.println("Ship \"" + name + "\" unloaded crate #" + crates);
         crates--;
         if (crates == 0) System.out.println("Ship \"" + name + "\" fully unloaded");
-        Thread.sleep(500);
+        Thread.sleep(random.nextInt(3000));
     }
 }
