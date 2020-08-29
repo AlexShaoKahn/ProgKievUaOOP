@@ -1,8 +1,10 @@
 package com.shao.progkievua.homework2.lecture03;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Group implements Serializable {
+    private static final long serialVersionUID = -7358805781579731187L;
     protected Student[] groupList = new Student[10];
 
     public Group() {
@@ -67,5 +69,18 @@ public class Group implements Serializable {
             if (student != null) result.append(student.toString()).append(System.lineSeparator());
         }
         return result.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Group)) return false;
+        Group group = (Group) o;
+        return Arrays.equals(groupList, group.groupList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(groupList);
     }
 }

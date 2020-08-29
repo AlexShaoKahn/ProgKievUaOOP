@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Human implements Serializable {
+    private static final long serialVersionUID = 8203105951999963898L;
     private String name;
     private String surname;
     private int age;

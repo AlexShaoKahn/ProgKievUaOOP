@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Student extends Human implements Serializable, Comparable<Student> {
+    private static final long serialVersionUID = 1469629162319286204L;
     private boolean livesInDormitory;
 
     public Student() {

@@ -10,6 +10,8 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class IGroup extends Group implements MilitaryCommissar, Serializable {
+    private static final long serialVersionUID = 5281772319319385032L;
+
     public IGroup() {
     }
 
