@@ -10,27 +10,27 @@ import java.util.stream.Collectors;
 
 public class Runner {
     public static void main(String[] args) {
-        Map<Byte, Integer> map = new LinkedHashMap<>();
+        Map<Character, Integer> map = new LinkedHashMap<>();
 
         try {
             String str = Files.readString(Paths.get(".\\src\\com\\shao\\progkievua\\homework2\\lecture09\\frequency\\text.txt"));
-
-            for (byte strByte : str.getBytes()) {
-                if (!map.containsKey(strByte)) map.put(strByte, 1);
-                else map.replace(strByte, map.get(strByte) + 1);
+            for (char strChar : str.toCharArray()) {
+                map.putIfAbsent(strChar, 1);
+                map.replace(strChar, map.get(strChar) + 1);
             }
 
-            Map<Byte, Integer> sortedMap = map
+            Map<Character, Integer> sortedMap = map
                     .entrySet()
                     .stream()
                     .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                     .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
 
-            for (Map.Entry<Byte, Integer> byteIntegerEntry : sortedMap.entrySet()) {
-                System.out.println(
-                        (char) byteIntegerEntry.getKey().intValue() + ": "
-                                + String.format("% .1f", 100. * byteIntegerEntry.getValue() / str.length()) + "%");
-            }
+            sortedMap
+                    .entrySet()
+                    .stream()
+                    .map(charIntegerEntry -> charIntegerEntry.getKey() + ": "
+                            + String.format("% .1f", 100. * charIntegerEntry.getValue() / str.length()) + "%")
+                    .forEach(System.out::println);
 
         } catch (IOException e) {
             e.printStackTrace();
