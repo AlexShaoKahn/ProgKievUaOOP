@@ -15,8 +15,10 @@ public class Runner {
         try {
             String str = Files.readString(Paths.get(".\\src\\com\\shao\\progkievua\\homework2\\lecture09\\frequency\\text.txt"));
             for (char strChar : str.toCharArray()) {
-                map.putIfAbsent(strChar, 1);
-                map.replace(strChar, map.get(strChar) + 1);
+                if ((strChar >= 'A' && strChar <= 'Z') || (strChar >= 'a' && strChar <= 'z')) {
+                    map.putIfAbsent(strChar, 1);
+                    map.replace(strChar, map.get(strChar) + 1);
+                }
             }
 
             Map<Character, Integer> sortedMap = map
