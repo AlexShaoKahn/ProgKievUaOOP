@@ -5,28 +5,54 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.concurrent.Callable;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 
-public class GroupClient implements Callable {
+public class GroupClient implements Runnable {
     private Socket socket;
-    private String answer;
+    WGroup group;
+    private Thread thread;
 
-    public GroupClient(Socket socket, String answer) {
+    public GroupClient(Socket socket, WGroup group) {
         this.socket = socket;
-        this.answer = answer;
+        this.group = group;
+        this.thread = new Thread(this);
+        thread.setDaemon(true);
+        this.thread.start();
     }
 
     @Override
-    public Integer call() {
+    public void run() {
+        String result = "default";
         try (InputStream is = socket.getInputStream(); OutputStream os = socket.getOutputStream()) {
             PrintWriter pw = new PrintWriter(os);
-            byte[] req = new byte[is.available()];
             String response = "HTTP/1.1 200 OK\r\n" + "Content-Type: text/html\r\n\r\n";
-            pw.print(response + answer);
+            byte[] bytes = new byte[is.available()];
+            is.read(bytes);
+            String button = parseGet(bytes);
+            switch (button) {
+                case "bySurname" -> group.sortBySurname();
+                case "byName" -> group.sortByName();
+                case "byAge" -> group.sortByAge();
+                default -> Collections.shuffle(group.getRealGroupList());
+            }
+            pw.print(response + (!button.equals("getRecruits") ? group.generateGroupAnswer() : group.generateRecruitsAnswer()));
             pw.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return 777;
+    }
+
+    private String parseGet(byte[] bytes) {
+        String result = new String();
+        final String s1 = "GET /";
+        final String s2 = " HTTP/";
+        String bString = new String(bytes, StandardCharsets.UTF_8);
+        if (bString.contains(s1) && bString.contains(s2)) {
+            int a = bString.indexOf(s1);
+            int b = bString.indexOf(s2);
+            if ((b) - (a + s1.length()) > 0) result = bString.substring(a + s1.length(), b);
+        }
+        return result;
     }
 }
