@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class MGroup extends IGroup implements Serializable {
     private static final long serialVersionUID = -7016204345364378361L;
-    List<Student> groupList = new ArrayList<>();
+    protected List<Student> groupLst = new ArrayList<>();
 
     public MGroup() {
     }
@@ -19,20 +19,20 @@ public class MGroup extends IGroup implements Serializable {
 
     @Override
     public Group addStudent(Student student) throws NoFreeSpaceInListException {
-        if (groupList.size() >= super.getGroupList().length) throw new NoFreeSpaceInListException();
-        groupList.add(student);
+        if (groupLst.size() >= super.getGroupList().length) throw new NoFreeSpaceInListException();
+        groupLst.add(student);
         return this;
     }
 
     @Override
     public void delStudent(Student student) throws NoStudentFoundException {
-        if (!groupList.contains(student)) throw new NoStudentFoundException();
-        else groupList.remove(student);
+        if (!groupLst.contains(student)) throw new NoStudentFoundException();
+        else groupLst.remove(student);
     }
 
     @Override
     public Student findStudentBySurname(String surname) throws NoStudentFoundException {
-        for (Student student : groupList) {
+        for (Student student : groupLst) {
             if (student.getSurname().equals(surname)) return student;
         }
         throw new NoStudentFoundException();
@@ -40,7 +40,7 @@ public class MGroup extends IGroup implements Serializable {
 
     public List<Student> getRealRecruitsList() {
         List<Student> recruits = new ArrayList<>();
-        for (Student student : groupList) {
+        for (Student student : groupLst) {
             if (student != null && student.getGender() != Gender.FEMALE && student.getAge() > 18) recruits.add(student);
         }
         return recruits;
@@ -48,7 +48,7 @@ public class MGroup extends IGroup implements Serializable {
 
     @Override
     public void sortBySurnameReversed() {
-        groupList.sort(((Comparator<Student>) (o1, o2) -> {
+        groupLst.sort(((Comparator<Student>) (o1, o2) -> {
             if (o1 == null || o2 == null) return 0;
             if (o1 == null) return -1;
             if (o2 == null) return 1;
@@ -58,7 +58,7 @@ public class MGroup extends IGroup implements Serializable {
 
     @Override
     public void sortByAgeAndGender() {
-        groupList.sort(((Comparator<Student>) (o1, o2) -> {
+        groupLst.sort(((Comparator<Student>) (o1, o2) -> {
             if (o1 == null || o2 == null) return 0;
             if (o1 == null) return -1;
             if (o2 == null) return 1;
@@ -73,7 +73,7 @@ public class MGroup extends IGroup implements Serializable {
 
     @Override
     public void sortBySurname() {
-        groupList.sort((o1, o2) -> {
+        groupLst.sort((o1, o2) -> {
             if (o1 == null || o2 == null) return 0;
             if (o1 == null) return -1;
             if (o2 == null) return 1;
@@ -83,7 +83,7 @@ public class MGroup extends IGroup implements Serializable {
 
     @Override
     public void sortByName() {
-        groupList.sort((o1, o2) -> {
+        groupLst.sort((o1, o2) -> {
             if (o1 == null || o2 == null) return 0;
             if (o1 == null) return -1;
             if (o2 == null) return 1;
@@ -93,17 +93,17 @@ public class MGroup extends IGroup implements Serializable {
 
     @Override
     public void sortByAge() {
-        groupList.sort(((Comparator<Student>) (o1, o2) -> {
+        groupLst.sort(((Comparator<Student>) (o1, o2) -> {
             if (o1 == null || o2 == null) return 0;
             if (o1 == null) return -1;
             if (o2 == null) return 1;
-            return Integer.compare(o1.getAge(), o2.getAge());
+            return Integer.compare(o2.getAge(), o1.getAge());
         }).reversed());
     }
 
     @Override
     public void sortByAgeAndGenderReversed() {
-        groupList.sort(((Comparator<Student>) (o1, o2) -> {
+        groupLst.sort(((Comparator<Student>) (o1, o2) -> {
             if (o1 == null || o2 == null) return 0;
             if (o1 == null) return -1;
             if (o2 == null) return 1;
@@ -118,7 +118,7 @@ public class MGroup extends IGroup implements Serializable {
 
     @Override
     public void sortByNameReversed() {
-        groupList.sort(((Comparator<Student>) (o1, o2) -> {
+        groupLst.sort(((Comparator<Student>) (o1, o2) -> {
             if (o1 == null || o2 == null) return 0;
             if (o1 == null) return -1;
             if (o2 == null) return 1;
@@ -128,7 +128,7 @@ public class MGroup extends IGroup implements Serializable {
 
     @Override
     public void sortByAgeReversed() {
-        groupList.sort((o1, o2) -> {
+        groupLst.sort((o1, o2) -> {
             if (o1 == null || o2 == null) return 0;
             if (o1 == null) return -1;
             if (o2 == null) return 1;
@@ -137,13 +137,13 @@ public class MGroup extends IGroup implements Serializable {
     }
 
     public List<Student> getRealGroupList() {
-        return groupList;
+        return groupLst;
     }
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder().append("Group List").append(System.lineSeparator());
-        for (Student student : groupList) {
+        for (Student student : groupLst) {
             result.append(student.toString()).append(System.lineSeparator());
         }
         return result.toString();
@@ -155,11 +155,11 @@ public class MGroup extends IGroup implements Serializable {
         if (!(o instanceof MGroup)) return false;
         if (!super.equals(o)) return false;
         MGroup mGroup = (MGroup) o;
-        return groupList.equals(mGroup.groupList);
+        return groupLst.equals(mGroup.groupLst);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), groupList);
+        return Objects.hash(super.hashCode(), groupLst);
     }
 }

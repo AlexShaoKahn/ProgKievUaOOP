@@ -40,6 +40,7 @@ public class Group implements Serializable {
         throw new NoStudentFoundException();
     }
 
+    @Deprecated
     public Student[] getGroupList() {
         return groupList.clone();
     }
