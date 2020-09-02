@@ -7,6 +7,11 @@ import com.shao.progkievua.homework2.lecture09.groupmod.MGroup;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 public class Runner {
@@ -34,13 +39,18 @@ public class Runner {
         answer.append("</tbody></table>");
         answer.append("<br/><button onclick=\"window.location.href='/bySurname'\">By surname</button>");
 
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
         try {
             ServerSocket serverSocket = new ServerSocket(8080);
+            List<Future<Integer>> futures = new ArrayList<>();
             for (; ; ) {
                 Socket clientSocket = serverSocket.accept();
                 GroupClient client = new GroupClient(clientSocket, answer.toString());
+                futures.add(executorService.submit(client));
             }
         } catch (IOException e) {
+            executorService.shutdown();
             e.printStackTrace();
         }
 
