@@ -136,6 +136,10 @@ public class MGroup extends IGroup implements Serializable {
         });
     }
 
+    public List<Student> getRealGroupList() {
+        return groupList;
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder().append("Group List").append(System.lineSeparator());
