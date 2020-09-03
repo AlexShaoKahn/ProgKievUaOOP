@@ -1,12 +1,18 @@
 package com.shao.progkievua.homework2.lecture11.groupwebinterface;
 
+import com.shao.progkievua.homework2.lecture03.Gender;
+import com.shao.progkievua.homework2.lecture03.NoFreeSpaceInListException;
+import com.shao.progkievua.homework2.lecture03.NoStudentFoundException;
+import com.shao.progkievua.homework2.lecture03.Student;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupClient implements Runnable {
     private Socket socket;
@@ -34,11 +40,37 @@ public class GroupClient implements Runnable {
                 case "bySurname" -> group.sortBySurname();
                 case "byName" -> group.sortByName();
                 case "byAge" -> group.sortByAge();
-                default -> Collections.shuffle(group.getRealGroupList());
+                //default -> Collections.shuffle(group.getRealGroupList());
             }
+
+            if (button.contains("delStudent")) {
+                int studentHash = Integer.parseInt(button.substring("delStudent".length()));
+                for (Student student : group.getRealGroupList()) {
+                    if (student.hashCode() == studentHash) {
+                        group.delStudent(student);
+                        break;
+                    }
+                }
+            }
+
+            if (button.contains("addStudent")) {
+                List<String> params = new ArrayList<>();
+                String query = button.substring("addStudent".length() + 1);
+                for (String s : query.split("&")) {
+                    params.add(s.split("=").length > 1 ? s.split("=")[1] : "empty");
+                }
+                try {
+                    group.addStudent(new Student(params.get(1), params.get(0), Integer.parseInt(params.get(2)), Gender.valueOf(params.get(3)), Boolean.valueOf(params.get(4))));
+                } catch (NoFreeSpaceInListException e) {
+                    e.printStackTrace();
+                }
+            }
+
             pw.print(response + (!button.equals("getRecruits") ? group.generateGroupAnswer() : group.generateRecruitsAnswer()));
             pw.flush();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoStudentFoundException e) {
             e.printStackTrace();
         }
     }
